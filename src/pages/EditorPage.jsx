@@ -5,12 +5,13 @@ import { useLocation } from "react-router-dom";
 
 const EditorPage = () => {
   const socketRef = useRef(null);
+  const location = useLocation();
   userEffect(() => {
     const init = async () => {
       socketRef.current = await initSocket();
       socketRef.current.emit(ACTIONS.JOIN, {
         roomID,
-        username: 
+        username: location.state.username,
       });
     };
     init();
